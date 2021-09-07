@@ -24,6 +24,7 @@ class ViewController: UIViewController {
     
     //button f(x)
     @IBAction func searchCity(_ sender: UIButton) {
+        print("CHECK GIT")
         zipCode = zipSearchTextField.text! // set zipcode to user input
         print(zipCode)
         callTemperatureAPI(locationKey: LocationAPI())
