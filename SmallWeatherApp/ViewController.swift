@@ -24,7 +24,7 @@ class ViewController: UIViewController {
     
     //button f(x)
     @IBAction func searchCity(_ sender: UIButton) {
-        print("CHECK GIT")
+        
         zipCode = zipSearchTextField.text! // set zipcode to user input
         print(zipCode)
         callTemperatureAPI(locationKey: LocationAPI())
@@ -97,7 +97,7 @@ class ViewController: UIViewController {
                             print("TEMP \(temperature.Value)")
                             self.cityTemperature = temperature.Value
                             self.cityTemperatureUnit = temperature.Unit
-                            self.cityTemperatureInFahrenheit = self.cityTemperature * 1.8 + 32
+                            self.cityTemperatureInFahrenheit = round(self.cityTemperature * 1.8 + 32)
                             self.cityTemperatureUnitType = temperature.UnitType
                             print("CITY TEMP \(self.cityTemperature)")
                         }
