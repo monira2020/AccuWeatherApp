@@ -40,11 +40,11 @@ class ViewController: UIViewController {
     }
     
     /*
-     * The locationAPI function (1) uses global variables apiKey and zipCode to perform a get request
-     * to the AccuWeather postal codes location API (2) then encodes the response data into a json string
+     * The locationAPI function (1) uses global variables apiKey and zipCode to perform a get request to find locationKey
+     * to the AccuWeather postal codes location API to find right city name (2) then encodes the response data into a json string
      * (3) then decodes the jsonString using a Location struct (Location.swift) into cityName and
      * locationKey global variables. It then (4) sets the UILabel cityNameLabel to the cityName global variable
-     * and (5) calls the temperatureAPI.
+     * and (5) calls the temperatureAPI (temperatureAPI uses locationKey to find temperature for right city).
      */
    public func locationAPI(){
         let url = URL(string: "http://dataservice.accuweather.com/locations/v1/postalcodes/search?apikey=\(apiKey)&q=\(zipCode)")!
@@ -58,21 +58,21 @@ class ViewController: UIViewController {
     
             let task = session.dataTask(with: request) {
                 (data, response, error) in
+               
                 if let jsonData = data {
+                    print("JSON DATA: \(jsonData)")
                     if let jsonString = String(data: jsonData, encoding: .utf8) {
-                        print("LOCATION JSON: \(jsonString)")
+                        print("LOCATION API JSON: \(jsonString)")
                         let locations = try! JSONDecoder().decode([Location].self, from: jsonData)
                         if let location = locations.first {
                             self.cityName = location.LocalizedName
                             self.locationKey = location.Key
-                            print("LOCATION KEY \(self.locationKey)")
                             DispatchQueue.main.async {
                                 self.cityNameLabel.text = self.cityName
                             }
                         }
-                        self.temperatureAPI()
                     }
-                    
+                    self.temperatureAPI()
                     
                     } else if let requestError = error {
                     print("Error fetching location: \(requestError)")
@@ -86,10 +86,11 @@ class ViewController: UIViewController {
         
     /*
      * The temperatureAPI function (1) uses global variables apiKey and locationKey to perform a get request
-     * to the AccuWeather next hourly temperature API (2) then encodes the response data into a json string
-     * (3) then decodes the jsonString using a Temperature struct (Temperature.swift) into a Celsius cityTemperature
-     * global variable. It then (4) rounds and converts Celsius response to Fahrenheit and (5) sets the UILabel
-     * cityTemperatureLabel to the cityTemperature global variable and (6) appends string fahrenheit unit.
+     * to the AccuWeather next hourly temperature API to find hourly temperature in Celsius
+     * (2) then encodes the response data into a json string (3) then decodes the jsonString using a Temperature struct
+     * (Temperature.swift) into a Celsius cityTemperature global variable. It then (4) rounds and converts Celsius
+     * response to Fahrenheit and (5) sets the UILabel cityTemperatureLabel to the cityTemperature global variable
+     * and (6) appends string fahrenheit unit.
      */
     func temperatureAPI() {
         let url = URL(string: "http://dataservice.accuweather.com/forecasts/v1/hourly/1hour/\(locationKey)?apikey=\(apiKey)&language=en-us&details=false&metric=true")!
@@ -105,7 +106,7 @@ class ViewController: UIViewController {
                 (data, response, error) in
                 if let jsonData = data {
                     if let jsonString = String(data: jsonData, encoding: .utf8) {
-                        print("TEMPERATUREJSON: \(jsonString)")
+                        print("TEMPERATURE API JSON: \(jsonString)")
 
                         let response = try? JSONDecoder().decode([Forecast].self, from: jsonData)
 
@@ -121,7 +122,7 @@ class ViewController: UIViewController {
                     }
                 } else if let requestError = error {
                     print("Error fetching temperature: \(requestError)")
-        } else {
+                } else {
                     print("Unexpected error fetching temperature")
                 }
         }

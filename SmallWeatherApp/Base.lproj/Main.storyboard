@@ -17,15 +17,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yWw-9q-bGn">
-                                <rect key="frame" x="158" y="69" width="116" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Temperature" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LWS-48-5TA">
+                                <rect key="frame" x="158" y="189.5" width="97" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" systemColor="secondarySystemBackgroundColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yWw-9q-bGn">
+                                <rect key="frame" x="158" y="69" width="97" height="34"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P2s-aJ-j43">
-                                <rect key="frame" x="286" y="69" width="54" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="City Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PuG-sF-dKU">
+                                <rect key="frame" x="158" y="141" width="97" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" systemColor="secondarySystemBackgroundColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P2s-aJ-j43">
+                                <rect key="frame" x="263" y="69" width="96" height="34"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <size key="titleShadowOffset" width="6" height="6"/>
                                 <state key="normal" title="Search">
@@ -35,25 +45,23 @@
                                     <action selector="searchCity:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8jn-DX-jrW"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="City Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PuG-sF-dKU">
-                                <rect key="frame" x="158" y="141" width="197" height="47"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" systemColor="secondarySystemBackgroundColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Temperature" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LWS-48-5TA">
-                                <rect key="frame" x="158" y="216" width="197" height="67"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" systemColor="secondarySystemBackgroundColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBlueColor"/>
                         <color key="tintColor" systemColor="systemBackgroundColor"/>
                         <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="PuG-sF-dKU" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="158" id="1np-9P-roS"/>
+                            <constraint firstItem="LWS-48-5TA" firstAttribute="centerX" secondItem="PuG-sF-dKU" secondAttribute="centerX" id="Aww-CK-tg8"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="P2s-aJ-j43" secondAttribute="trailing" constant="55" id="ElT-nr-3gb"/>
+                            <constraint firstItem="yWw-9q-bGn" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="25" id="IDj-bs-7qz"/>
+                            <constraint firstItem="yWw-9q-bGn" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="KAw-bu-vOw"/>
+                            <constraint firstItem="P2s-aJ-j43" firstAttribute="leading" secondItem="yWw-9q-bGn" secondAttribute="trailing" constant="8" id="agq-ac-hpz"/>
+                            <constraint firstItem="P2s-aJ-j43" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="25" id="e6U-Et-NP0"/>
+                            <constraint firstItem="LWS-48-5TA" firstAttribute="top" secondItem="PuG-sF-dKU" secondAttribute="bottom" constant="28" id="guu-gi-taM"/>
+                            <constraint firstItem="LWS-48-5TA" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="158" id="qEL-47-S18"/>
+                            <constraint firstItem="PuG-sF-dKU" firstAttribute="top" secondItem="yWw-9q-bGn" secondAttribute="bottom" constant="38" id="zix-vt-h5Z"/>
+                        </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="s8d-cq-hqW" appends="YES" id="fCP-aA-Qfk"/>
                         </connections>
