@@ -22,16 +22,27 @@ class ViewController: UIViewController {
     var cityTemperatureUnitType: Int32 = 0
     var cityTemperatureInFahrenheit: Double = 0.0
     
-    //button f(x)
-    @IBAction func searchCity(_ sender: UIButton) {
-        
-        zipCode = zipSearchTextField.text! // set zipcode to user input
-        print(zipCode)
-        callTemperatureAPI(locationKey: LocationAPI())
+    /*
+     * The dismissKeyboard function resigns first responder (dismisses keyboard) when user
+     * taps outside the zipcode text field (search text field).
+     */
+    @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
+        zipSearchTextField.resignFirstResponder()
     }
+    
+    /*
+     * The search city function (1) resigns first responder (dismisses keyboard) when user
+     * taps search and then (2) sets the global zipCode variable to the user input text
+     * and last (3) calls locationAPI.
+     */
+    @IBAction func searchCity(_ sender: UIButton) {
+        zipSearchTextField.resignFirstResponder()
+        zipCode = zipSearchTextField.text! // set zipcode to user input
+        locationAPI()
+    }
+    
     //parse for location key
-   public func LocationAPI() -> String {
-        print("REACHED LOCATION API")
+   public func locationAPI(){
         let url = URL(string: "http://dataservice.accuweather.com/locations/v1/postalcodes/search?apikey=\(apiKey)&q=\(zipCode)")!
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
@@ -40,7 +51,7 @@ class ViewController: UIViewController {
                let config = URLSessionConfiguration.default
                return URLSession(configuration: config)
            }()
-            print("REACHED SESSION")
+    
             let task = session.dataTask(with: request) {
                 (data, response, error) in
                 if let jsonData = data {
@@ -55,7 +66,7 @@ class ViewController: UIViewController {
                                 self.cityNameLabel.text = self.cityName
                             }
                         }
-                        
+                        self.temperatureAPI()
                     }
                     
                     
@@ -67,14 +78,10 @@ class ViewController: UIViewController {
             }
         
         task.resume()
-    print("LOCATION KEY: \(locationKey)")
-    return locationKey
        }
         
    //  parse for temperature
-    func callTemperatureAPI(locationKey: String) {
-        print("REACHED TEMPERATURE API")
-        print("REACHED LOCATION KEY:\(locationKey)")
+    func temperatureAPI() {
         let url = URL(string: "http://dataservice.accuweather.com/forecasts/v1/hourly/1hour/\(locationKey)?apikey=K9ThwCmT3GORmKWcF8osHlQ9TaviWkXV&language=en-us&details=false&metric=true")!
         print("URL: \(url)")
         var request = URLRequest(url: url)
@@ -94,12 +101,11 @@ class ViewController: UIViewController {
                         let response = try? JSONDecoder().decode([Forecast].self, from: jsonData)
 
                         if let temperature = response?.first?.Temperature {
-                            print("TEMP \(temperature.Value)")
                             self.cityTemperature = temperature.Value
                             self.cityTemperatureUnit = temperature.Unit
                             self.cityTemperatureInFahrenheit = round(self.cityTemperature * 1.8 + 32)
                             self.cityTemperatureUnitType = temperature.UnitType
-                            print("CITY TEMP \(self.cityTemperature)")
+    
                         }
                     }
 
@@ -113,7 +119,6 @@ class ViewController: UIViewController {
                 }
         }
 
-        print("CITY TEMPERATURE: \(String(describing: cityTemperatureLabel.text))")
           task.resume()
 
        }
@@ -121,6 +126,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.systemBlue
+        zipSearchTextField.attributedPlaceholder = NSAttributedString(string: "zipCode",
+                                     attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
         // Do any additional setup after loading the view.
     }
 
