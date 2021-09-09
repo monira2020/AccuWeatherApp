@@ -18,8 +18,6 @@ class ViewController: UIViewController {
     var locationKey: String = ""
     var cityName: String = ""
     var cityTemperature: Double = 0.0
-    var cityTemperatureUnit: String = ""
-    var cityTemperatureUnitType: Int32 = 0
     var cityTemperatureInFahrenheit: Double = 0.0
     
     /*
@@ -41,7 +39,13 @@ class ViewController: UIViewController {
         locationAPI()
     }
     
-    //parse for location key
+    /*
+     * The locationAPI function (1) uses global variables apiKey and zipCode to perform a get request
+     * to the AccuWeather postal codes location API (2) then encodes the response data into a json string
+     * (3) then decodes the jsonString using a Location struct (Location.swift) into cityName and
+     * locationKey global variables. It then (4) sets the UILabel cityNameLabel to the cityName global variable
+     * and (5) calls the temperatureAPI.
+     */
    public func locationAPI(){
         let url = URL(string: "http://dataservice.accuweather.com/locations/v1/postalcodes/search?apikey=\(apiKey)&q=\(zipCode)")!
         var request = URLRequest(url: url)
@@ -80,10 +84,15 @@ class ViewController: UIViewController {
         task.resume()
        }
         
-   //  parse for temperature
+    /*
+     * The temperatureAPI function (1) uses global variables apiKey and locationKey to perform a get request
+     * to the AccuWeather next hourly temperature API (2) then encodes the response data into a json string
+     * (3) then decodes the jsonString using a Temperature struct (Temperature.swift) into a Celsius cityTemperature
+     * global variable. It then (4) rounds and converts Celsius response to Fahrenheit and (5) sets the UILabel
+     * cityTemperatureLabel to the cityTemperature global variable and (6) appends string fahrenheit unit.
+     */
     func temperatureAPI() {
-        let url = URL(string: "http://dataservice.accuweather.com/forecasts/v1/hourly/1hour/\(locationKey)?apikey=K9ThwCmT3GORmKWcF8osHlQ9TaviWkXV&language=en-us&details=false&metric=true")!
-        print("URL: \(url)")
+        let url = URL(string: "http://dataservice.accuweather.com/forecasts/v1/hourly/1hour/\(locationKey)?apikey=\(apiKey)&language=en-us&details=false&metric=true")!
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
 
@@ -102,9 +111,7 @@ class ViewController: UIViewController {
 
                         if let temperature = response?.first?.Temperature {
                             self.cityTemperature = temperature.Value
-                            self.cityTemperatureUnit = temperature.Unit
                             self.cityTemperatureInFahrenheit = round(self.cityTemperature * 1.8 + 32)
-                            self.cityTemperatureUnitType = temperature.UnitType
     
                         }
                     }
@@ -123,6 +130,10 @@ class ViewController: UIViewController {
 
        }
 
+    /*
+     * The viewDidLoad function loads a system color blue background and sets placeholder property of
+     * UITextField zipSearchTextField.
+     */
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.systemBlue
