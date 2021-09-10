@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina6_0" orientation="landscape" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
@@ -14,28 +14,28 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="SmallWeatherApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="844" height="390"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Temperature" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LWS-48-5TA">
-                                <rect key="frame" x="158" y="189.5" width="97" height="20.5"/>
+                                <rect key="frame" x="186" y="132.66666666666666" width="97" height="20.333333333333343"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" systemColor="secondarySystemBackgroundColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yWw-9q-bGn">
-                                <rect key="frame" x="158" y="69" width="97" height="34"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="City Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PuG-sF-dKU">
+                                <rect key="frame" x="186" y="84" width="79.666666666666686" height="20.666666666666671"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" systemColor="secondarySystemBackgroundColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yWw-9q-bGn">
+                                <rect key="frame" x="186" y="25" width="32" height="34"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="City Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PuG-sF-dKU">
-                                <rect key="frame" x="158" y="141" width="97" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" systemColor="secondarySystemBackgroundColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P2s-aJ-j43">
-                                <rect key="frame" x="263" y="69" width="96" height="34"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P2s-aJ-j43">
+                                <rect key="frame" x="226" y="25" width="48" height="30"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <size key="titleShadowOffset" width="6" height="6"/>
                                 <state key="normal" title="Search">
@@ -51,16 +51,18 @@
                         <color key="tintColor" systemColor="systemBackgroundColor"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="PuG-sF-dKU" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="158" id="1np-9P-roS"/>
-                            <constraint firstItem="LWS-48-5TA" firstAttribute="centerX" secondItem="PuG-sF-dKU" secondAttribute="centerX" id="Aww-CK-tg8"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="P2s-aJ-j43" secondAttribute="trailing" constant="55" id="ElT-nr-3gb"/>
-                            <constraint firstItem="yWw-9q-bGn" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="25" id="IDj-bs-7qz"/>
-                            <constraint firstItem="yWw-9q-bGn" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="KAw-bu-vOw"/>
-                            <constraint firstItem="P2s-aJ-j43" firstAttribute="leading" secondItem="yWw-9q-bGn" secondAttribute="trailing" constant="8" id="agq-ac-hpz"/>
-                            <constraint firstItem="P2s-aJ-j43" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="25" id="e6U-Et-NP0"/>
-                            <constraint firstItem="LWS-48-5TA" firstAttribute="top" secondItem="PuG-sF-dKU" secondAttribute="bottom" constant="28" id="guu-gi-taM"/>
-                            <constraint firstItem="LWS-48-5TA" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="158" id="qEL-47-S18"/>
-                            <constraint firstItem="PuG-sF-dKU" firstAttribute="top" secondItem="yWw-9q-bGn" secondAttribute="bottom" constant="38" id="zix-vt-h5Z"/>
+                            <constraint firstItem="P2s-aJ-j43" firstAttribute="leading" secondItem="yWw-9q-bGn" secondAttribute="trailing" constant="8" symbolic="YES" id="0bh-cu-wYM"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="LWS-48-5TA" secondAttribute="trailing" symbolic="YES" id="8dp-Ce-xC1"/>
+                            <constraint firstItem="LWS-48-5TA" firstAttribute="top" secondItem="P2s-aJ-j43" secondAttribute="bottom" constant="77.5" id="9lp-zJ-oRS"/>
+                            <constraint firstItem="PuG-sF-dKU" firstAttribute="leading" secondItem="yWw-9q-bGn" secondAttribute="leading" id="ERC-kr-Aav"/>
+                            <constraint firstItem="P2s-aJ-j43" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="25" id="I97-EE-w9t"/>
+                            <constraint firstItem="PuG-sF-dKU" firstAttribute="top" secondItem="yWw-9q-bGn" secondAttribute="bottom" constant="25" id="ZKk-9p-SO6"/>
+                            <constraint firstItem="yWw-9q-bGn" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="25" id="ckN-bH-Gsw"/>
+                            <constraint firstItem="yWw-9q-bGn" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="126" id="fCI-qH-yjJ"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="PuG-sF-dKU" secondAttribute="trailing" symbolic="YES" id="fFy-zA-uBh"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="P2s-aJ-j43" secondAttribute="trailing" symbolic="YES" id="gCd-Lo-VDz"/>
+                            <constraint firstItem="P2s-aJ-j43" firstAttribute="leading" secondItem="yWw-9q-bGn" secondAttribute="trailing" constant="8" id="nh0-U6-sFO"/>
+                            <constraint firstItem="LWS-48-5TA" firstAttribute="leading" secondItem="yWw-9q-bGn" secondAttribute="leading" id="rRX-3p-8Vn"/>
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="s8d-cq-hqW" appends="YES" id="fCP-aA-Qfk"/>
@@ -79,7 +81,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="18.840579710144929" y="79.6875"/>
+            <point key="canvasLocation" x="18.22429906542056" y="79.049676025917933"/>
         </scene>
     </scenes>
     <resources>

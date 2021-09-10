@@ -1,7 +1,7 @@
 //
 //  ViewController.swift
 //  SmallWeatherApp
-//
+// weather by yusup saputra from the Noun Project
 //  Created by Monisha Ravi on 9/2/21.
 //
 
@@ -58,21 +58,25 @@ class ViewController: UIViewController {
     
             let task = session.dataTask(with: request) {
                 (data, response, error) in
-               
                 if let jsonData = data {
                     print("JSON DATA: \(jsonData)")
                     if let jsonString = String(data: jsonData, encoding: .utf8) {
                         print("LOCATION API JSON: \(jsonString)")
                         let locations = try! JSONDecoder().decode([Location].self, from: jsonData)
-                        if let location = locations.first {
+                        if locations.isEmpty  {
+//                           let httpResponse = response as? HTTPURLResponse
+                           
+                            
+                            
+                        } else if let location = locations.first {
                             self.cityName = location.LocalizedName
                             self.locationKey = location.Key
                             DispatchQueue.main.async {
                                 self.cityNameLabel.text = self.cityName
                             }
+                            self.temperatureAPI()
                         }
                     }
-                    self.temperatureAPI()
                     
                     } else if let requestError = error {
                     print("Error fetching location: \(requestError)")
